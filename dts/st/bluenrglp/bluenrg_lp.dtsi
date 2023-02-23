@@ -1,0 +1,121 @@
+/*
+ * Copyright (c) 2019 Linaro Limited
+ * Copyright (c) 2019 Centaur Analytics, Inc
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+ /* This file is extracted from BlueNRG2 Zephyr integration Github made by a customer 
+  * It needs to be updated for BlueNRGLP specifications
+  */
+
+ #include <mem.h>
+ #include <arm/armv6-m.dtsi>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <bindings/clock/clock_bluenrg_lp.h>
+ 
+ / {
+     cpus {
+         #address-cells = <1>;
+         #size-cells = <0>;
+ 
+         cpu@0 {
+             device_type = "cpu";
+             compatible = "arm,cortex-m0";
+             reg = <0>;
+         };
+     };
+     // sram0 : ok
+     sram0: memory@20000000 {
+         device_type = "memory";
+         reg = <0x20000000 DT_SIZE_K(64)>;
+     };
+ 
+     soc {
+        // interrupt, address et size-cells à vérifier
+         flash-controller@40001000 {
+             compatible = "st,bluenrg_lp-flash-controller";
+             label = "FLASH_CTRL";
+             reg = <0x40001000 DT_SIZE_K(4)>;
+             interrupts = <1 0>;
+             #address-cells = <1>;
+             #size-cells = <1>;
+            
+             // flash0 : ok
+             flash0: flash@10040000 {
+                 reg = <0x10040000 DT_SIZE_K(256)>;
+             };
+         };
+         // rcc : clock-cells à vérifier
+         rcc: rcc@48400000 {
+             compatible = "st,bluenrg_lp-rcc";
+             #clock-cells = <1>;
+             reg = <0x48400000 0x9C>;
+             label = "BLUENRG_LP_CLK_RCC";
+         };
+         // pincrtl : add & size à vérif
+         pinctrl: pin-controller@48000000 {
+			compatible = "st,bluenrg_lp-pinctrl";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			reg = <0x48000000 DT_SIZE_K(2)>;
+
+            // gpioa : cells à vérif
+			gpioa: gpio@48000000 {
+				compatible = "st,bluenrg_lp-gpio";
+				gpio-controller;
+				#gpio-cells = <2>;
+				reg = <0x48000000 DT_SIZE_K(1)>;
+                clocks = <&rcc BLUENRG_LP_CLOCK_PERIPH_GPIO 0x00000001>;
+                label = "GPIOA"
+			};
+            // gpiob : cells à vérif
+			gpiob: gpio@48100000 {
+				compatible = "st,bluenrg_lp-gpio";
+				gpio-controller;
+				#gpio-cells = <2>;
+				reg = <0x48100000 DT_SIZE_K(1)>;
+				clocks = <&rcc BLUENRG_LP_CLOCK_PERIPH_GPIO 0x00000002>;
+                label = "GPIOB"
+			};
+         };
+         // interrupt & clocks à vérif
+         usart1: serial@41004000 {
+             compatible = "st,bluenrg_lp-uart";
+             reg = <0x41004000 DT_SIZE_K(1)>;
+             clocks = <&rcc BLUENRG_LP_CLOCK_PERIPH_USART>;
+             //clocks = <&rcc STM32_CLOCK_BUS_APB1 0x00020000>;
+             interrupts = <8 0>;
+             status = "disabled";
+             label = "USART1";
+         };
+ 
+         // adc1 : clocks & io-channel à vérif
+         adc1: adc@41006000 {
+             compatible = "st,bluenrg_lp-adc";
+             reg = <0x41006000 0x100>;
+             clocks = <&rcc BLUENRG_LP_CLOCK_PERIPH_ADC>;
+             interrupts = <12 0>;
+             status = "disabled";
+             label = "ADC";
+             #io-channel-cells = <1>;
+         };
+
+         // clocks & add & size-cells à vérif
+         spi1: spi@41002000 {
+             compatible = "st,bluenrg_lp-spi";
+             #address-cells = <1>;
+             #size-cells = <0>;
+             reg = <0x41002000 DT_SIZE_K(1)>;
+             clocks = <&rcc BLUENRG_LP_CLOCK_PERIPH_SPI>;
+             interrupts = <5 0>;
+             status = "disabled";
+             label = "SPI1";
+         };
+     };
+ };
+ 
+ // nvic : ok
+ &nvic {
+     arm,num-irq-priority-bits = <2>;
+ };
