@@ -23,7 +23,7 @@
 #include "rf_driver_ll_system.h"
 
 /* Private constants ---------------------------------------------------------*/
- 
+
 
 /* OTA tag used to  tag a  valid application on interrupt vector table*/
 #if defined (CONFIG_OTA_SERVICE_MANAGER)
