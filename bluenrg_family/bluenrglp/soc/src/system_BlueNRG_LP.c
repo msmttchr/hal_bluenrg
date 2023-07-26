@@ -22,6 +22,11 @@
 #include "rf_driver_ll_bus.h"
 #include "rf_driver_ll_system.h"
 
+
+#define CONFIG_DEVICE_BLUENRG_LP 
+#define CONFIG_HW_SMPS_10uH
+#define CONFIG_HW_LS_XTAL
+#define CONFIG_HW_HSE_TUNE 32
 /* Private constants ---------------------------------------------------------*/
 
 #ifndef CONFIG_NUM_MAX_LINKS

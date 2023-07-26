@@ -19,7 +19,7 @@
 ******************************************************************************
 */ 
 /* Includes ------------------------------------------------------------------*/
-#include "BlueNRG_LPx.h"
+#include "bluenrg_lpx.h"
 #include "clock.h"
 #include "system_BlueNRG_LP.h"
 #include "rf_driver_ll_utils.h"
@@ -39,7 +39,7 @@ const tClockTime CLOCK_SECOND = 1000;
 void SysCount_Handler(void) 
 {
   sys_tick_count++;
-  //printf("%d\r\n", sys_tick_count); //TBR
+//  printf("%d\r\n", sys_tick_count); //TBR
 }
 
 /*---------------------------------------------------------------------------*/

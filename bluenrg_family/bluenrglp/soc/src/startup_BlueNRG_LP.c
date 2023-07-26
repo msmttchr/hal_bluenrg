@@ -291,56 +291,56 @@ REQUIRED(const intvec_elem __vector_table[]) = {
 
 
 
-/* Configure all the interrupts priority. 
- * The application can modify the interrupts priority.
- * The BLE_TX_RX_IRQn SHALL maintain the highest priority
- */
-void setInterruptPriority(void)
-{
-  NVIC_SetPriority(FLASH_IRQn,       IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(RCC_IRQn,         IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(PVD_IRQn,         IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(I2C1_IRQn,        IRQ_LOW_PRIORITY);
-#if defined(I2C2) 
-  NVIC_SetPriority(I2C2_IRQn,        IRQ_LOW_PRIORITY);
-#endif
-#if defined(SPI1) 
-  NVIC_SetPriority(SPI1_IRQn,        IRQ_LOW_PRIORITY);
-#endif
-#if defined(SPI2) 
-  NVIC_SetPriority(SPI2_IRQn,        IRQ_LOW_PRIORITY);
-#endif
-  NVIC_SetPriority(SPI3_IRQn,        IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(USART1_IRQn,      IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(LPUART1_IRQn,     IRQ_LOW_PRIORITY);
-#if defined(TIM1)
-  NVIC_SetPriority(TIM1_IRQn,        IRQ_LOW_PRIORITY);
-#endif
-#if defined(TIM2)
-  NVIC_SetPriority(TIM2_IRQn,        IRQ_LOW_PRIORITY);
-#endif
-  NVIC_SetPriority(RTC_IRQn,         IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(ADC_IRQn,         IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(PKA_IRQn,         IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(UPCONV_IRQn,      IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(GPIOA_IRQn,       IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(GPIOB_IRQn,       IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(DMA_IRQn,         IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(BLE_TX_RX_IRQn,   IRQ_CRITICAL_PRIORITY);
-  NVIC_SetPriority(BLE_AES_IRQn,     IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(BLE_ERROR_IRQn,   IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(RADIO_CTRL_IRQn,  IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(MR_BLE_IRQn,      IRQ_LOW_PRIORITY);
-  NVIC_SetPriority(CPU_WKUP_IRQn,    IRQ_HIGH_PRIORITY);
-  NVIC_SetPriority(BLE_WKUP_IRQn,    IRQ_CRITICAL_PRIORITY);
-  NVIC_SetPriority(BLE_SEQ_IRQn,     IRQ_LOW_PRIORITY);
-#if defined(TIM16)
-  NVIC_SetPriority(TIM16_IRQn,       IRQ_LOW_PRIORITY);
-#endif
-#if defined(TIM17)
-  NVIC_SetPriority(TIM17_IRQn,       IRQ_LOW_PRIORITY);
-#endif
-}
+// /* Configure all the interrupts priority. 
+//  * The application can modify the interrupts priority.
+//  * The BLE_TX_RX_IRQn SHALL maintain the highest priority
+//  */
+// void setInterruptPriority(void)
+// {
+//   NVIC_SetPriority(FLASH_IRQn,       IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(RCC_IRQn,         IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(PVD_IRQn,         IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(I2C1_IRQn,        IRQ_LOW_PRIORITY);
+// #if defined(I2C2) 
+//   NVIC_SetPriority(I2C2_IRQn,        IRQ_LOW_PRIORITY);
+// #endif
+// #if defined(SPI1) 
+//   NVIC_SetPriority(SPI1_IRQn,        IRQ_LOW_PRIORITY);
+// #endif
+// #if defined(SPI2) 
+//   NVIC_SetPriority(SPI2_IRQn,        IRQ_LOW_PRIORITY);
+// #endif
+//   NVIC_SetPriority(SPI3_IRQn,        IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(USART1_IRQn,      IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(LPUART1_IRQn,     IRQ_LOW_PRIORITY);
+// #if defined(TIM1)
+//   NVIC_SetPriority(TIM1_IRQn,        IRQ_LOW_PRIORITY);
+// #endif
+// #if defined(TIM2)
+//   NVIC_SetPriority(TIM2_IRQn,        IRQ_LOW_PRIORITY);
+// #endif
+//   NVIC_SetPriority(RTC_IRQn,         IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(ADC_IRQn,         IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(PKA_IRQn,         IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(UPCONV_IRQn,      IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(GPIOA_IRQn,       IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(GPIOB_IRQn,       IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(DMA_IRQn,         IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(BLE_TX_RX_IRQn,   IRQ_CRITICAL_PRIORITY);
+//   NVIC_SetPriority(BLE_AES_IRQn,     IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(BLE_ERROR_IRQn,   IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(RADIO_CTRL_IRQn,  IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(MR_BLE_IRQn,      IRQ_LOW_PRIORITY);
+//   NVIC_SetPriority(CPU_WKUP_IRQn,    IRQ_HIGH_PRIORITY);
+//   NVIC_SetPriority(BLE_WKUP_IRQn,    IRQ_CRITICAL_PRIORITY);
+//   NVIC_SetPriority(BLE_SEQ_IRQn,     IRQ_LOW_PRIORITY);
+// #if defined(TIM16)
+//   NVIC_SetPriority(TIM16_IRQn,       IRQ_LOW_PRIORITY);
+// #endif
+// #if defined(TIM17)
+//   NVIC_SetPriority(TIM17_IRQn,       IRQ_LOW_PRIORITY);
+// #endif
+//}
 
 
 /******************* (C) COPYRIGHT 2021 STMicroelectronics *****END OF FILE****/

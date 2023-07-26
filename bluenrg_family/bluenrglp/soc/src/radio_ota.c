@@ -17,7 +17,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
 #include "radio_ota.h"
-#include "bluenrg_lp_evb_config.h"
+//#include "bluenrg_lp_evb_config.h"
 
 /** @addtogroup BlueNRG1_StdPeriph_Examples
 * @{
@@ -42,9 +42,9 @@
 
 void OTA_Jump_To_Reset_Manager(void)
 {
-  RAM_VR.OTAActivation = OTA_SWITCH_TO_OTA_RESET_MANAGER; 
+  //RAM_VR.OTAActivation = OTA_SWITCH_TO_OTA_RESET_MANAGER; 
   
-  NVIC_SystemReset();
+  //NVIC_SystemReset();
 }
 
 

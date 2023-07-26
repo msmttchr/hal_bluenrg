@@ -38,6 +38,8 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
+#include <zephyr/types.h>
+#define CONFIG_DEVICE_BLUENRG_LP
 #if defined(CONFIG_DEVICE_BLUENRG_LP) || defined(CONFIG_DEVICE_BLUENRG_LPS) || defined(CONFIG_DEVICE_BLUENRG_LPF)
 #include "bluenrg_lpx.h"
 #include "system_BlueNRG_LP.h"
@@ -162,7 +164,7 @@ extern "C" {
     * @brief  Get Word0 of the unique device identifier (UID based on 64 bits)
     * @retval Word0 of UID64
     */
-  __STATIC_INLINE uint32_t LL_GetUID_Word0(void)
+  static inline uint32_t LL_GetUID_Word0(void)
   {
     return (uint32_t)(READ_REG(*((uint32_t *)UID_BASE_ADDRESS)));
   }
@@ -171,7 +173,7 @@ extern "C" {
     * @brief  Get Word1 of the unique device identifier (UID based on 64 bits)
     * @retval Word1 of UID64
     */
-  __STATIC_INLINE uint32_t LL_GetUID_Word1(void)
+  static inline uint32_t LL_GetUID_Word1(void)
   {
     return (uint32_t)(READ_REG(*((uint32_t *)(UID_BASE_ADDRESS + 4U))));
   }
@@ -182,7 +184,7 @@ extern "C" {
     *         As an example, 0x7FFF corresponds to 128 Kbytes.
     * @retval FLASH_SIZE[15:0]: Flash memory size
     */
-  __STATIC_INLINE uint32_t LL_GetFlashSize(void)
+  static inline uint32_t LL_GetFlashSize(void)
   {
     return (uint32_t)(READ_REG(*((uint32_t *)FLASHSIZE_BASE_ADDRESS)) & FLASH_FLASH_SIZE_FLASH_SIZE);
   }
@@ -195,7 +197,7 @@ extern "C" {
     * @arg LL_UTILS_RAMSIZE_48K
     * @arg LL_UTILS_RAMSIZE_64K
     */
-  __STATIC_INLINE uint32_t LL_GetRAMSize(void)
+  static inline uint32_t LL_GetRAMSize(void)
   {
     __IOM uint32_t tmpreg;
 #if defined(FLASH_FLASH_SIZE_RAM_SIZE)
@@ -219,7 +221,7 @@ extern "C" {
     * @arg LL_UTILS_PACKAGETYPE_QFN32
     * @arg LL_UTILS_PACKAGETYPE_CSP49
     */
-  __STATIC_INLINE uint32_t LL_GetPackageType(void)
+  static inline uint32_t LL_GetPackageType(void)
   {
     return (uint32_t)(READ_REG(*((uint32_t *)PACKAGE_BASE_ADDRESS)) & 0x1FU);
   }
@@ -228,7 +230,7 @@ extern "C" {
     * @brief  Get Device version and cut information
     * @retval DIE_ID register infomration
     */
-  __STATIC_INLINE uint32_t LL_GetDIE_ID(void)
+  static inline uint32_t LL_GetDIE_ID(void)
   {
     return (uint32_t)(READ_REG(*((uint32_t *)DEV_ID_BASE_ADDRESS)));
   }
@@ -248,7 +250,7 @@ extern "C" {
   * @param  Ticks Number of ticks
   * @retval None
   */
-__STATIC_INLINE void LL_InitTick(uint32_t HCLKFrequency, uint32_t Ticks)
+static inline void LL_InitTick(uint32_t HCLKFrequency, uint32_t Ticks)
 {
   /* Configure the SysTick to have interrupt in 1ms time base */
   SysTick->LOAD  = (uint32_t)((HCLKFrequency / Ticks) - 1UL);  /* set reload register */

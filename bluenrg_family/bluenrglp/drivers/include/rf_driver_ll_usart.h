@@ -26,6 +26,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
+#define CONFIG_DEVICE_BLUENRG_LP
 #if defined(CONFIG_DEVICE_BLUENRG_LP) || defined(CONFIG_DEVICE_BLUENRG_LPS) || defined(CONFIG_DEVICE_BLUENRG_LPF)
 #include "bluenrg_lpx.h"
 #endif
@@ -33,7 +34,6 @@ extern "C" {
 /** @addtogroup RF_DRIVER_LL_Driver
   * @{
   */
-
 #if defined (USART1)
 
 /** @defgroup USART_LL USART
@@ -78,6 +78,7 @@ static const uint16_t USART_PRESCALER_TAB[] =
   */
 
 /* Private macros ------------------------------------------------------------*/
+#define USE_FULL_LL_DRIVER
 #if defined(USE_FULL_LL_DRIVER)
 /** @defgroup USART_LL_Private_Macros USART Private Macros
   * @{

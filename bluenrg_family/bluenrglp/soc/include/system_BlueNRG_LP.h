@@ -53,7 +53,9 @@
  
 #include <stdint.h>
 #include "compiler.h"
-     
+
+#define CONFIG_DEVICE_BLUENRG_LP
+
 /** @addtogroup Library configuration section
   * @{
   */
