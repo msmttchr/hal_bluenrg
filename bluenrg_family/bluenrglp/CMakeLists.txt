@@ -93,3 +93,4 @@ zephyr_library_sources_ifdef(CONFIG_USE_STM_LP_LL_TIM drivers/src/rf_driver_ll_t
 zephyr_library_sources_ifdef(CONFIG_USE_STM_LP_LL_TIMER drivers/src/rf_driver_ll_timer.c)
 zephyr_library_sources(drivers/src/rf_driver_ll_usart.c)
 zephyr_library_sources_ifdef(CONFIG_USE_STM_LP_LL_UTILS drivers/src/rf_driver_ll_utils.c)
+
